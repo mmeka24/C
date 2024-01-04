@@ -7,13 +7,6 @@
 
 using namespace std;
 
-/*
-function prototypes if neccessary
-void (add ); 
-void (deletes ); 
-void (print ); 
-void (average ); */
-
 void add(Node* cur, Node* prev, Node* &head);
 void print(Node* next);
 float getAvg(Node* current, int total);
@@ -26,19 +19,23 @@ void add(Node* newNode, Node* cur, Node* prev, Node* &head) {
     //checking if the current node is null 
     if (prev == NULL) {
       //checking if the previous node is null so llist is empty
-      //if empty head is the newNode
+      //if empty then the newNode will be HEAD
       head = newNode;
     } else{
-      //if 
+      //if current node is null than prev updated to point to new node  
       prev->setNext(newNode);
     }
     return;
   }
+  //organizes the ids
   if(newNode->getStudent()->getStudentID() < cur->getStudent()->getStudentID()) {
+    // if the new node has a smaller student ID, insert it before the current node
     newNode->setNext(cur);
     if (prev != NULL) {
+      //if previous node 
       prev->setNext(newNode);
     } else {
+      //no previous nodes at all newNode is head again 
       head = newNode;
     }
   } else {
@@ -51,6 +48,7 @@ float getAvg(Node* current, int total){
   if (current == NULL) {
     return 0;
   }
+  //incremented total in the main 
   return current->getStudent()->getGPA()/total + getAvg(current->getNext(), total);
 
 }
@@ -59,23 +57,27 @@ float getAvg(Node* current, int total){
 void print(Node* next){
   if (next == NULL) {
     return;
+    //if next node has nothing then don't print 
   }
-  Student* cur = next->getStudent();
-  cout << cur->getStudentID() << "\n";
-  cout << cur->getGPA() << "\n";
+  Student* cur = next->getStudent(); //short hand version to deference addresses
+  cout << "student id: " << cur->getStudentID() << endl;
+  cout << "gpa: "<< cur->getGPA() << endl;
+  cout << "first name: "<< cur->getFirstName() << endl; 
+  cout << "last name: " << cur->getLastName() << endl; 
   print(next->getNext());
 }
 
 
 void remove(Node* &head, Node* current, Node* prev, int studentID, int &total) {
   if (current == NULL) {
-    return;
+    return; //nothing in. skip. 
   }
   if (current->getStudent()->getStudentID() == studentID) {
     if (prev != NULL) {
       prev->getNext()->setNext(current->getNext());
-    } else {
-      head = NULL;;
+    } 
+    else {
+      head = head->getNext();
     }
     total--;
 
@@ -105,13 +107,18 @@ int main() {
       cout << "ID: " ;
       int studentID;
       cin >> studentID;
+      cin.ignore(); 
+
+
       //first name
       cout << "First Name:" ;
+       // cin.ignore(); 
          cin.getline(first, 81);
          
 
       //last name
       cout << "Last Name: " ;
+     // cin.ignore(); 
          cin.getline(last, 81);
 
       //gpa

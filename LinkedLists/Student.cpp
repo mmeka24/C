@@ -4,9 +4,9 @@
 using namespace std;
 //getters for student
 //return functions from Student.h
-Student::Student(char* f, char* l, int id, float gpa) {
-  strcpy(f, firstName);
-  strcpy(l, lastName);
+Student::Student(char* first, char* last, int id, float gpa) {
+  strcpy(firstName, first);
+  strcpy(lastName, last);
   studentID = id;
   GPA = gpa;
 }

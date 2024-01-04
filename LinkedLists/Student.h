@@ -18,7 +18,7 @@ class Student {
   char lastName[81];
   int studentID = 0;
   float GPA = 0;
-  Student(char f[], char l[], int id, float gpa);
+  Student(char first[], char last[], int id, float gpa);
 };
 
 #endif
